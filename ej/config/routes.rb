@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :comments
+  resources :positions
   resources :assignments
   get 'home/index'
 
