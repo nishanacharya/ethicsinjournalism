@@ -4,6 +4,8 @@ class CreatePosts < ActiveRecord::Migration
       t.string "headline"
       t.text "draft1"
       t.text "draft2"
+      t.integer "user_id"
+      t.integer "assignment_id"
       t.timestamps null: false
     end
   end
