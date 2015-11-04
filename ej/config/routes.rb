@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :notes
+  resources :posts
   resources :comments
   resources :positions
   resources :assignments
