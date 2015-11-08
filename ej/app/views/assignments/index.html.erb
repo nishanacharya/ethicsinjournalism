@@ -23,11 +23,7 @@ th, td {
           <td>Edit</td>
           <td>Destroy</td>
         <% else %>
-          <% if Posts.where(:user_id => current_user.id).exists %>
-            <td>Edit Post</td>
-          <% else %>
-            <td>Start Post</td>
-          <% end %>
+          <td>Start/Edit Post</td>
           <td>View My Post</td>
           <td>View Opposing Positions</td>
         <% end %>
@@ -46,7 +42,7 @@ th, td {
           <td><%= link_to 'Edit', edit_assignment_path(assignment), class:'btn btn-default btn-xs' %></td>
           <td><%= link_to 'Destroy', assignment, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-default btn-xs' %></td>
         <% else %>
-          <% if Posts.where(:user_id => current_user.id).exists %>
+          <% if Post.where(:user_id => current_user.id, :assignment_id => assignment.id).exists? %>
             <td><%= link_to 'Edit Post'%></td>
           <% else %>
             <td><%= link_to 'Start Post'%></td>
@@ -61,6 +57,6 @@ th, td {
 
 <br>
 
-<p align="center"><%= link_to 'New Assignment', new_assignment_path, class:'btn btn-primary btn-lg' %></p>
+<p align="center"><%= link_to 'New Assignment', new_assignment_path, class:'btn btn-primary btn-lg' if current_user.admin %></p>
 
 
