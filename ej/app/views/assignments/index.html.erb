@@ -41,7 +41,6 @@ th, td {
         <td><%= assignment.title%></td>
         <td><%= assignment.deadline%></td>
         <% if current_user.admin %>
-          <td><%= link_to ''%></td>
           <td><!-- %= link_to 'Go to Posts', assignment.posts, class:'btn btn-default btn-xs' % --></td>
           <td><%= link_to 'Show', assignment, class:'btn btn-default btn-xs' %></td>
           <td><%= link_to 'Edit', edit_assignment_path(assignment), class:'btn btn-default btn-xs' %></td>
