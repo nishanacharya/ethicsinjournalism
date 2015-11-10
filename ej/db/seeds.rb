@@ -17,4 +17,6 @@
     Post.create(headline: "Post 2", draft1: "Draft 1-2", draft2: "Draft2-2", user_id: "2", assignment_id: "2")
     Post.create(headline: "Post 3", draft1: "Draft 1-3", draft2: "Draft2-3", user_id: "3", assignment_id: "3")
     
-    
+    Position.create(title: "For", post_id: "1", assignment_id: "1")
+    Position.create(title: "Against", post_id: "2", assignment_id: "2")
+    Position.create(title: "For", post_id: "3", assignment_id: "3")

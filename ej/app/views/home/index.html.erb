@@ -1,2 +1,20 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<style>
+    table, td {
+        padding: 15px;
+        border: 0px;
+    }
+</style>
+<%if current_user.admin %>
+<div align = "center">
+    <table>
+        <tr>
+        <td><%= link_to 'Create Assignment', new_assignment_path, class: 'btn btn-primary btn-lg' %></td> 
+        <td> <%= link_to 'View', assignments_path, class: 'btn btn-primary btn-lg' %><br></td>
+        </tr>
+        <tr>
+        <td> <%= link_to 'Student Statistics', class: 'btn btn-primary btn-lg' %></td>
+        <td><%= link_to 'In Class View', class: 'btn btn-primary btn-lg' %><br></td>
+        </tr>
+    </table>
+</div> 
+<% end %>
