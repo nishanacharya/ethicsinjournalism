@@ -15,6 +15,7 @@ class AssignmentsController < ApplicationController
   # GET /assignments/new
   def new
     @assignment = Assignment.new
+    1.times { @assignment.positions.build}
   end
 
   # GET /assignments/1/edit
@@ -69,6 +70,6 @@ class AssignmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def assignment_params
-      params.require(:assignment).permit(:title, :description, :deadline)
+      params.require(:assignment).permit(:title, :description, :deadline, positions_attributes: [:id, :title, :_destroy])
     end
 end
