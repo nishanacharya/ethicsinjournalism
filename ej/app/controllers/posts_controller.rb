@@ -4,7 +4,8 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @assignment = Assignment.find(params[:assignment_id])
+    @posts = Post.where(assignment_id: @assignment.id)
   end
 
   # GET /posts/1

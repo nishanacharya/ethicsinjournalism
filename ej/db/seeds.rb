@@ -12,10 +12,16 @@
     Assignment.create(title: 'Assignment 1', description: 'Assignment Description 1', deadline: '30/12/2015 17:00')
     Assignment.create(title: 'Assignment 2', description: 'Assignment Description 2', deadline: '30/12/2015 17:00')
     Assignment.create(title: 'Assignment 3', description: 'Assignment Description 3', deadline: '30/12/2015 17:00')
-    
-    Post.create(headline: "Post 1", draft1: "Draft 1-1", draft2: "Draft2-1", user_id: "1", assignment_id: "1")
-    Post.create(headline: "Post 2", draft1: "Draft 1-2", draft2: "Draft2-2", user_id: "2", assignment_id: "2")
+    Assignment.create(title: 'Assignment 4', description: 'Assignment Description 4', deadline: '30/12/2015 17:00')
+    Assignment.create(title: 'Assignment 5', description: 'Assignment Description 5', deadline: '30/12/2015 17:00')
+   
+    Post.create(headline: "Post 1", draft1: "Draft 1-1", draft2: "Draft2-1", user_id: "3", assignment_id: "1")
+    Post.create(headline: "Post 2", draft1: "Draft 1-2", draft2: "Draft2-2", user_id: "3", assignment_id: "2")
     Post.create(headline: "Post 3", draft1: "Draft 1-3", draft2: "Draft2-3", user_id: "3", assignment_id: "3")
+    Post.create(headline: "Post 4", draft1: "Draft 1-4", draft2: "Draft2-4", user_id: "3", assignment_id: "3")   
+    Post.create(headline: "Post 5", draft1: "Draft 1-5", draft2: "Draft2-5", user_id: "3", assignment_id: "3")   
+    Post.create(headline: "Post 6", draft1: "Draft 1-6", draft2: "Draft2-6", user_id: "3", assignment_id: "5")   
+    Post.create(headline: "Post 7", draft1: "Draft 1-7", draft2: "Draft2-7", user_id: "3", assignment_id: "5")   
     
     Position.create(title: "For", post_id: "1", assignment_id: "1")
     Position.create(title: "Against", post_id: "2", assignment_id: "2")

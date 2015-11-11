@@ -37,7 +37,7 @@ th, td {
         <td><%= assignment.title%></td>
         <td><%= assignment.deadline%></td>
         <% if current_user.admin %>
-          <td><!-- %= link_to 'Go to Posts', assignment.posts, class:'btn btn-default btn-xs' % --></td>
+          <td><%= link_to 'Go to Posts', {:controller => 'posts', :action => 'index', :assignment_id => assignment.id}, class:'btn btn-default btn-xs' %></td>
           <td><%= link_to 'Show', assignment, class:'btn btn-default btn-xs' %></td>
           <td><%= link_to 'Edit', edit_assignment_path(assignment), class:'btn btn-default btn-xs' %></td>
           <td><%= link_to 'Destroy', assignment, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-default btn-xs' %></td>
