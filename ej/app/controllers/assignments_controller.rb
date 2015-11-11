@@ -15,7 +15,7 @@ class AssignmentsController < ApplicationController
   # GET /assignments/new
   def new
     @assignment = Assignment.new
-    1.times { @assignment.positions.build}
+    4.times { @assignment.positions.build}
   end
 
   # GET /assignments/1/edit
