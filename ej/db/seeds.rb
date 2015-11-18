@@ -26,3 +26,7 @@
     Position.create(title: "For", post_id: "1", assignment_id: "1")
     Position.create(title: "Against", post_id: "2", assignment_id: "2")
     Position.create(title: "For", post_id: "3", assignment_id: "3")
+    Position.create(title: "For", post_id: "4", assignment_id: "3")
+    Position.create(title: "Against", post_id: "5", assignment_id: "3")
+    Position.create(title: "For", post_id: "6", assignment_id: "5")
+    Position.create(title: "For", post_id: "7", assignment_id: "5")
