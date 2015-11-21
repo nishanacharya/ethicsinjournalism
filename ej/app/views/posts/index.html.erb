@@ -17,7 +17,7 @@ th, td {
           <%= 'Headline:'%><%= post.headline %>
           <%= 'Author:'%><%= post.user.name %>
           <%= 'Position:'%><%= post.positions.first.title %>
-          <%= link_to 'Go to Post', posts_path %>
+          <%= link_to 'Go to Post', post %>
         </td>
       </tr>
     <% end %>
