@@ -1,31 +1,23 @@
 <p id="notice"><%= notice %></p>
 
 <head>
-  <style>
-table, th, td {
-    border: 1px solid black;
-}
-
-th, td {
-    padding: 15px;
-}
-</style>
 </head>
-<h1 align="center">Assignment Listing</h1>
-<table align="center">
+<body>
+<div class="panel panel-default">
+  <div class="panel-heading"><h1 align="center">Assignment Listing</h1></div>
+<table class="table" align="center">
   <thead>
     <tr>
-        <td>Title</td>
-        <td>Deadline</td>
+        <td><h3>Title</h3></td>
+        <td><h3>Deadline</h3></td>
         <% if current_user.admin %>
-          <td>Link to Submissions</td>
-          <td>Show</td>
-          <td>Edit</td>
-          <td>Destroy</td>
+          <td><h3>Link to Submissions</h3></td>
+          <td><h3>Edit</h3></td>
+          <td><h3>Destroy</h3></td>
         <% else %>
-          <td>Start/Edit Post</td>
-          <td>View My Post</td>
-          <td>View Opposing Positions</td>
+          <td><h3>Start/Edit Post</h3></td>
+          <td><h3>View My Post</h3></td>
+          <td><h3>View Opposing Positions</h3></td>
         <% end %>
     </tr>
   </thead>
@@ -37,10 +29,9 @@ th, td {
         <td><%= assignment.title%></td>
         <td><%= assignment.deadline%></td>
         <% if current_user.admin %>
-          <td><%= link_to 'Go to Posts', {:controller => 'posts', :action => 'index', :assignment_id => assignment.id}, class:'btn btn-default btn-xs' %></td>
-          <td><%= link_to 'Show', assignment, class:'btn btn-default btn-xs' %></td>
-          <td><%= link_to 'Edit', edit_assignment_path(assignment), class:'btn btn-default btn-xs' %></td>
-          <td><%= link_to 'Destroy', assignment, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-default btn-xs' %></td>
+          <td><%= link_to 'Go to Posts', {:controller => 'posts', :action => 'index', :assignment_id => assignment.id}, class:'btn btn-default' %></td>
+          <td><%= link_to 'Edit', edit_assignment_path(assignment), class:'btn btn-default' %></td>
+          <td><%= link_to 'Destroy', assignment, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-default' %></td>
         <% else %>
           <% if Post.where(:user_id => current_user.id, :assignment_id => assignment.id).exists? %>
             <td><%= link_to 'Edit Post'%></td>
@@ -54,9 +45,11 @@ th, td {
     <% end %>
   </tbody>
 </table>
+</div>
 
 <br>
 
-<p align="center"><%= link_to 'New Assignment', new_assignment_path, class:'btn btn-primary btn-lg' if current_user.admin %></p>
-
-
+<p align="center">
+  <%= link_to 'New Assignment', new_assignment_path, class:'btn btn-primary btn-lg' if current_user.admin %>
+</p>
+</body>
