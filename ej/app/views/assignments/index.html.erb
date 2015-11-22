@@ -34,12 +34,12 @@
           <td><%= link_to 'Destroy', assignment, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-default' %></td>
         <% else %>
           <% if Post.where(:user_id => current_user.id, :assignment_id => assignment.id).exists? %>
-            <td><%= link_to 'Edit Post'%></td>
+            <td><%= link_to 'Edit Post', edit_post_path(assignment) %></td>
           <% else %>
-            <td><%= link_to 'Start Post'%></td>
+            <td><%= link_to 'Start Post', new_post_path(assignment)%></td>
           <% end %>
-          <td><%= link_to 'View My Post'%></td>
-          <td><%= link_to 'View Opposing Positions'%></td>
+          <td><%= link_to 'View My Post', post_path(assignment)%></td>
+          <td><%= link_to 'View Opposing Positions', {:controller => 'posts', :action => 'index', :assignment_id => assignment.id}%></td>
         <% end %>
       </tr>
     <% end %>
