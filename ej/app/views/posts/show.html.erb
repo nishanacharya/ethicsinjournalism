@@ -1,3 +1,40 @@
 <p id="notice"><%= notice %></p>
 
+<div class="page-header">
+  <h1><%= @post.headline %><small>                  by: <%= @post.user.name %></small></h1>
+</div>
+<div class="well well-lg">
+    <%= @post.draft1 %>
+</div>
+
+
+<% if @post.draft2.length > 0 %>
+    <div class="well well-lg">
+        <%= @post.draft2 %>
+    </div>
+<% end %>
+
+<h4>Comments</h4>
+
+<table class="table table-bordered">
+	<%@comments = @post.comments.order('created_at ASC')%>
+	<%@comments.each do |c|%>
+		<tr>
+			<td width="80%"><%=c.content.html_safe%></td>
+			<td width="20%" align="right">Commenter: <%=c.user.name%></td>
+		</tr>
+	<%end%>
+</table>
+
+<!-- create new comment -->
+<%=form_for(Comment.new) do |f|%>
+	<%=f.label :content, 'Add a Comment'%><br>
+	<%=f.text_area :content %><br>
+	<%=f.hidden_field :user_id, value: current_user.id%>
+	<%=f.hidden_field :post_id, value: @post.id%>
+	<%=f.submit "Save Comment"%>
+<%end%>
+
 <%= link_to 'Edit', edit_post_path(@post) %>
+
+
