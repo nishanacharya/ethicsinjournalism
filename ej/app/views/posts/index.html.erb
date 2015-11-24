@@ -9,21 +9,36 @@ th, td {
     padding: 15px;
 }
 </style>
+
 <table>
   <tbody>
     <% @posts.each do |post| %>
-      <tr>
-        <td>
-          <%= 'Headline:'%><%= post.headline %>
-          <%= 'Author:'%><%= post.user.name %>
-          <%= 'Position:'%><%= post.positions.first.title %>
-          <%= link_to 'Go to Post', post %>
-        </td>
-      </tr>
+      <% if current_user.admin %>
+          <tr>
+            <td>
+              <%= 'Headline:'%><%= post.headline %>
+              <%= 'Author:'%><%= post.user.name %>
+              <%= 'Position:'%><%= post.positions.first.title %>
+              <%= link_to 'Go to Post', post %>
+            </td>
+          </tr>
+      <% else %>
+          <% if @position.first.title != post.positions.first.title %> 
+            <tr>
+              <td>
+                <%= 'Headline:'%><%= post.headline %>
+                <%= 'Author:'%><%= post.user.name %>
+                <%= 'Position:'%><%= post.positions.first.title %>
+                <%= link_to 'Go to Post', post %>
+              </td>
+            </tr>
+          <% else %>
+            <!-- do nothing -->
+          <% end %>
+      <% end %>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
 <%= link_to 'New Post', new_post_path %>

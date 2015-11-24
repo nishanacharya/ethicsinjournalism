@@ -10,6 +10,8 @@ class PostsController < ApplicationController
     else 
       @assignment = Assignment.find(params[:assignment_id])
       @posts = Post.where(assignment_id: @assignment.id)
+      @currentPost = Post.where(user_id: @current_user.id, assignment_id: @assignment.id)
+      @position = Position.where(post_id: @currentPost)
     end
   end
 

@@ -38,8 +38,10 @@
           <% else %>
             <td><%= link_to 'Start Post', new_post_path(assignment)%></td>
           <% end %>
-          <td><%= link_to 'View My Post', post_path(assignment)%></td>
-          <td><%= link_to 'View Opposing Positions', {:controller => 'posts', :action => 'index', :assignment_id => assignment.id}%></td>
+          <% if Post.where(:user_id => current_user.id, :assignment_id => assignment.id).exists? %>
+            <td><%= link_to 'View My Post', post_path(assignment)%></td>
+            <td><%= link_to 'View Opposing Positions', {:controller => 'posts', :action => 'index', :assignment_id => assignment.id}%></td>
+          <% end %>
         <% end %>
       </tr>
     <% end %>
