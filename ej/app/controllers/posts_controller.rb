@@ -4,14 +4,22 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @assignment = Assignment.find(params[:assignment_id])
-    @posts = Post.where(assignment_id: @assignment.id)    
-
+    if current_user.admin?
+      @assignment = Assignment.find(params[:assignment_id])
+      @posts = Post.where(assignment_id: @assignment.id)
+    else 
+      @assignment = Assignment.find(params[:assignment_id])
+      @posts = Post.where(assignment_id: @assignment.id)
+      @currentPost = Post.where(user_id: @current_user.id, assignment_id: @assignment.id)
+      @position = Position.where(post_id: @currentPost)
+    end
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+    
+
   end
 
   # GET /posts/new
