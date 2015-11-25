@@ -8,6 +8,14 @@ Rails.application.routes.draw do
   resources :assignments
   get 'home/index'
 
+
+  resources :posts do
+    member do
+        get :flop
+    end
+  end
+  
+  
   root to:"home#index"
   
   devise_for :users

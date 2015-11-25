@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20151104133021) do
     t.text     "draft2",        limit: 65535
     t.integer  "user_id",       limit: 4
     t.integer  "assignment_id", limit: 4
+    t.boolean  "bookmarked",                  null: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end

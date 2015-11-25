@@ -62,6 +62,14 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def flop
+    post = Post.find(params[:id])
+    post.bookmarked = !post.bookmarked # flop the status
+    post.save
+
+    redirect_to post_path(post)
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -71,6 +79,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-        params.require(:post).permit(:headline, :draft1, :draft2, :user_id, :assignment_id)
+        params.require(:post).permit(:headline, :draft1, :draft2, :bookmarked, :user_id, :assignment_id)
     end
 end

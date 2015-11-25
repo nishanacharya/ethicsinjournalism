@@ -3,18 +3,42 @@
 <div class="page-header">
   <h1><%= @post.headline %><small>                  by: <%= @post.user.name %></small></h1>
 </div>
+<h4>First Draft</h4>
 <div class="well well-lg">
     <%= @post.draft1 %>
 </div>
 
 
 <% if @post.draft2.length > 0 %>
+    <h4>Final Draft</h4>
     <div class="well well-lg">
         <%= @post.draft2 %>
     </div>
 <% end %>
 
+<div align="right">
+  <% if current_user.admin %>
+  	<% if !@post.bookmarked %>
+  	  <%= button_to 'Bookmark', flop_post_path(@post) %>
+  	<% else %>
+  	  <%= button_to 'Bookmarked', flop_post_path(@post) %>
+  	<% end %>
+  <%end%>
+  
+  
+  <% if @post.likes.where(:user_id => current_user.id).exists? %>
+    <%= button_to 'Unlike', @post.likes.where(:user_id => current_user.id).first.destroy %>
+  <% else %>
+    <%=form_for(Like.new) do |f|%>
+	  <%=f.hidden_field :user_id, value: current_user.id%>
+	  <%=f.hidden_field :post_id, value: @post.id%>
+      <%= f.submit 'Like' %>
+  	<% end %>
+  <% end %>
+</div>
+
 <table style="padding: 20px">
+  <tr>
 	<td>
 		<h4>Comments</h4>
 
@@ -27,33 +51,37 @@
 		</tr>
 	<%end%>
 </table>
-
-<!-- create new comment -->
-<%=form_for(Comment.new) do |f|%>
-	<%=f.label :content, 'Add a Comment'%><br>
-	<%=f.text_area :content %><br>
-	<%=f.hidden_field :user_id, value: current_user.id%>
-	<%=f.hidden_field :post_id, value: @post.id%>
-	<%=f.submit "Save Comment"%>
-<%end%>
 	</td>
 	<td>
-		<% if @post.notes.empty? %>
+	  <div align="right">
+		<% if @post.notes.where(:user_id => current_user.id).exists? %>
+		   <%=form_for(@post.notes.where(:user_id => current_user.id).first) do |f|%>
+			<%=f.text_area :content %>
+			<%=f.submit "Save Note" %>
+		  <%end%>
+		<%else%>
 		  <%=form_for(Note.new) do |f|%>
 			<%=f.text_area :content %>
 			<%=f.hidden_field :user_id, value: current_user.id %>
 			<%=f.hidden_field :post_id, value: @post.id %>
 			<%=f.submit "Save Note" %>
 		  <%end%>
-		<%else%>
-		  <%=form_for(@post.notes.first) do |f|%>
-			<%=f.text_area :content %>
-			<%=f.submit "Save Note" %>
-		  <%end%>
 		<% end %>
-		
-		
+	  </div>
 	</td>
+  </tr>
+  <tr>
+  	<td>
+  		<!-- create new comment -->
+		<%=form_for(Comment.new) do |f|%>
+			<%=f.label :content, 'Add a Comment'%><br>
+			<%=f.text_area :content %><br>
+			<%=f.hidden_field :user_id, value: current_user.id%>
+			<%=f.hidden_field :post_id, value: @post.id%>
+			<%=f.submit "Save Comment"%>
+		<%end%>
+  	</td>
+  </tr>
 </table>
 
 
