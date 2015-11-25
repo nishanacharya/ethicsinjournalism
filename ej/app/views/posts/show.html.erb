@@ -19,9 +19,9 @@
 <div align="right">
   <% if current_user.admin %>
   	<% if !@post.bookmarked %>
-  	  <%= button_to 'Bookmark', flop_post_path(@post) %>
+  	  <%= button_to 'Bookmark', flop_post_path(id: @post.id) %>
   	<% else %>
-  	  <%= button_to 'Bookmarked', flop_post_path(@post) %>
+  	  <%= button_to 'Bookmarked', flop_post_path(id: @post.id) %>
   	<% end %>
   <%end%>
   
