@@ -8,7 +8,7 @@
 </div>
 
 
-<% if @post.draft2.length > 0 %>
+<% if @post.draft2 != nil && @post.draft2.length > 0 %>
     <div class="well well-lg">
         <%= @post.draft2 %>
     </div>
