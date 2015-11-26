@@ -24,7 +24,8 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    @post = Post.new
+    @assignment = Assignment.find(params[:assignment_id])
+    @post = Post.new(assignment_id: @assignment.id)
   end
 
   # GET /posts/1/edit

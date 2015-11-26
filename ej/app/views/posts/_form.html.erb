@@ -18,6 +18,7 @@
   <!-- USE MODAL TO PREVIEW DRAFT BEFORE SUBMITTING!!! -->
   <%= f.label :draft2 %>
   <%= f.cktext_area :draft2 %><br>
+  <%= "Time Until Deadline: " + Time.diff(Time.now, @post.assignment.deadline)[:diff] + "\n" %>
 
   <div class="actions">
     <%= f.submit %>
