@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :posts do
     member do
         get :flop
+        post :flop
     end
   end
   

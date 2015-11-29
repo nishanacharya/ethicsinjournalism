@@ -11,6 +11,8 @@
     </div>
   <% end %>
 
+  <%=f.hidden_field :user_id, value: current_user.id%>
+  <%=f.hidden_field :bookmarked, value: false%>
   <%= f.label :headline %>
   <%= f.text_field :headline %><br>
   <%= f.label :draft1 %>
