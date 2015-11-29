@@ -1,16 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<style>
-table, th, td {
-    border: 1px solid black;
-}
-
-th, td {
-    padding: 15px;
-}
-</style>
-
-<table>
+<div class="panel panel-default">
+  <div class="panel-heading"><h1 align="center">Posts for <%=Assignment.where(:id => params[:assignment_id]).first.title%></h1></div>
+<table class="table" align="center">
   <tbody>
     <% @posts.each do |post| %>
       <% if current_user.admin %>
@@ -19,17 +11,17 @@ th, td {
               <%= 'Headline:'%><%= post.headline %>
               <%= 'Author:'%><%= post.user.name %>
               <%= 'Position:'%><%= post.positions.first.title %>
-              <%= link_to 'Go to Post', post %>
+              <%= link_to 'Go to Post', post, class:'btn btn-default btn-xs' %>
             </td>
           </tr>
       <% else %>
           <% if @position.first.title != post.positions.first.title %> 
             <tr>
               <td>
-                <%= 'Headline:'%><%= post.headline %>
-                <%= 'Author:'%><%= post.user.name %>
-                <%= 'Position:'%><%= post.positions.first.title %>
-                <%= link_to 'Go to Post', post %>
+                <%= 'Headline:'%><%= post.headline %>          
+                <%= 'Author:'%><%= post.user.name %>          
+                <%= 'Position:'%><%= post.positions.first.title %>           
+                <%= link_to 'Go to Post', post, class:'btn btn-defaul btn-xs' %>
               </td>
             </tr>
           <% else %>
@@ -41,4 +33,5 @@ th, td {
 </table>
 
 <br>
-<%= link_to 'New Post', new_post_path %>
+
+<!--= button_to 'New Post', new_post_path -->
