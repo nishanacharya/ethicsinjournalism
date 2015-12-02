@@ -1,17 +1,17 @@
 <p id="notice"><%= notice %></p>
 
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-  <% @notes.where(:user_id => current_user.id).each do |note| %>
+  <% @notes.where(:user_id => current_user.id).each_with_index do |note, index| %>
 
    <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="heading" >
       <h4 class="panel-title">
-        <a role="button" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse<% note.id %>" aria-expanded="true" aria-controls="collapse<% note.id %>" >
+        <a role="button" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= index+1 %>" aria-expanded="true" aria-controls="collapse<%= index+1 %>" >
           "<%= Post.where(:id => note.post_id).first.headline %>" by <%= User.where(:id => Post.where(:id => note.post_id).first.user_id).first.name %>
         </a>
       </h4>
     </div>
-    <div id="collapse<% note.id %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<% note.id %>" >
+    <div id="collapse<%= index+1 %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<% note.id %>" >
       <div class="panel-body">
         <%= note.content %><br>
         <%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' } %>
