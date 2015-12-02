@@ -38,10 +38,10 @@
   <% end %>
 </div>
 
-<table style="padding: 20px">
-  <tr>
-	<td>
-		<h4>Comments</h4>
+<div class="row">
+  <div class="col-sm-8">
+  	
+<h4>Comments</h4>
 
 <table class="table table-bordered">
 	<%@comments = @post.comments.order('created_at ASC')%>
@@ -52,27 +52,6 @@
 		</tr>
 	<%end%>
 </table>
-	</td>
-	<td>
-	  <div align="right">
-		<% if @post.notes.where(:user_id => current_user.id).exists? %>
-		   <%=form_for(@post.notes.where(:user_id => current_user.id).first) do |f|%>
-			<%=f.text_area :content %>
-			<%=f.submit "Save Note" %>
-		  <%end%>
-		<%else%>
-		  <%=form_for(Note.new) do |f|%>
-			<%=f.text_area :content %>
-			<%=f.hidden_field :user_id, value: current_user.id %>
-			<%=f.hidden_field :post_id, value: @post.id %>
-			<%=f.submit "Save Note" %>
-		  <%end%>
-		<% end %>
-	  </div>
-	</td>
-  </tr>
-  <tr>
-  	<td>
   		<!-- create new comment -->
 		<%=form_for(Comment.new) do |f|%>
 			<%=f.label :content, 'Add a Comment'%><br>
@@ -81,7 +60,22 @@
 			<%=f.hidden_field :post_id, value: @post.id%>
 			<%=f.submit "Save Comment"%>
 		<%end%>
-  	</td>
-  </tr>
-</table>
+  </div>
+  <div class="col-sm-4">
+  	<br><br>
+  		<% if @post.notes.where(:user_id => current_user.id).exists? %>
+		   <%=form_for(@post.notes.where(:user_id => current_user.id).first) do |f|%>
+			<%=f.text_area :content %>
+			<%=f.submit "Save Note" %>
+		  <%end%>
+		<%else%>
+		  <%=form_for(Note.new) do |f|%>
+			<%=f.text_area :content %>
+			<%=f.hidden_field :user_id, value: current_user.id %>
+			<%=f.hidden_field :post_id, value: @post.id %><br>
+			<%=f.submit "Save Note" %>
+		  <%end%>
+		<% end %>
+  </div>
+</div>
 
