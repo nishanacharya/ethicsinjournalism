@@ -30,6 +30,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    @assignment = Assignment.find(@post.assignment_id)
   end
 
   # POST /posts
