@@ -11,6 +11,8 @@
     </div>
   <% end %>
 
+<table>
+ <td>  
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.hidden_field :assignment_id, value: @assignment.id %>
   <%= f.label :headline %>
@@ -36,3 +38,59 @@
   <% end %>
  
 <% end %>
+ </td>
+ <td>
+   <div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#notes" aria-controls="notes" role="tab" data-toggle="tab">My Notes</a></li>
+    <li role="presentation"><a href="#comments" aria-controls="comments" role="tab" data-toggle="tab">My Post's Comments</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="notes">
+      
+      <br>
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <% Note.where(:user_id => current_user.id).each_with_index do |note, index| %>
+   <% if Post.where(:id => note.post_id).first.assignment_id == @assignment.id %>
+   <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading" >
+      <h4 class="panel-title">
+        <a role="button" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= index+1 %>" aria-expanded="true" aria-controls="collapse<%= index+1 %>" >
+          "<%= Post.where(:id => note.post_id).first.headline %>" by <%= User.where(:id => Post.where(:id => note.post_id).first.user_id).first.name %>
+        </a>
+      </h4>
+    </div>
+    <div id="collapse<%= index+1 %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<% note.id %>" >
+      <div class="panel-body">
+        <%= note.content %><br>
+        <%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
+    </div>
+   </div>
+   <% end %>
+
+  <% end %>
+  </div>
+    </div>
+    
+    
+    <div role="tabpanel" class="tab-pane" id="comments">
+      <table class="table table-bordered">
+	<%@comments = @post.comments.order('created_at ASC')%>
+	<%@comments.each do |c|%>
+		<tr>
+			<td width="80%"><%=c.content.html_safe%></td>
+			<td width="20%" align="right">Commenter: <%=c.user.name%></td>
+		</tr>
+	<%end%>
+</table>
+    </div>
+  </div>
+
+</div>
+ </td>
+</table>

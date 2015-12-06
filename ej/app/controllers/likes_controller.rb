@@ -28,7 +28,7 @@ class LikesController < ApplicationController
 
     respond_to do |format|
       if @like.save
-        format.html { redirect_to @like, notice: 'Like was successfully created.' }
+        format.html { redirect_to Post.where(id: @like.post_id).first }
         format.json { render :show, status: :created, location: @like }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class LikesController < ApplicationController
   def update
     respond_to do |format|
       if @like.update(like_params)
-        format.html { redirect_to @like, notice: 'Like was successfully updated.' }
+        format.html { redirect_to @like }
         format.json { render :show, status: :ok, location: @like }
       else
         format.html { render :edit }
@@ -54,9 +54,10 @@ class LikesController < ApplicationController
   # DELETE /likes/1
   # DELETE /likes/1.json
   def destroy
+    @post = Post.where(id: @like.post_id).first
     @like.destroy
     respond_to do |format|
-      format.html { redirect_to likes_url, notice: 'Like was successfully destroyed.' }
+      format.html { redirect_to @post }
       format.json { head :no_content }
     end
   end
