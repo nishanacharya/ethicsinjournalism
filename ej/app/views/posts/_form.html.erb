@@ -17,8 +17,16 @@
   <%= f.hidden_field :assignment_id, value: @assignment.id %>
   <%= f.label :headline %>
   <%= f.text_field :headline %><br>
-  <%= f.label :draft1 %>
-  <%= f.cktext_area :draft1 %><br>
+  
+  <% if @post.submitted %>
+    <div class="well well-lg">
+      <%= @post.draft1 %>
+    </div>
+  <% else %>
+    <%= f.label :draft1 %>
+    <%= f.cktext_area :draft1 %><br>
+  <% end %>
+  
   <!-- USE MODAL TO PREVIEW DRAFT BEFORE SUBMITTING!!! -->
   <% if @post.submitted %>
     <%= f.label :draft2 %>
