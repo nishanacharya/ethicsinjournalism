@@ -11,22 +11,28 @@
     </div>
   <% end %>
 
-  <%=f.hidden_field :user_id, value: current_user.id%>
-  <%=f.hidden_field :assignment_id, value: @assignment.id %>
-  <%=f.hidden_field :bookmarked, value: false%>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :assignment_id, value: @assignment.id %>
   <%= f.label :headline %>
   <%= f.text_field :headline %><br>
   <%= f.label :draft1 %>
   <%= f.cktext_area :draft1 %><br>
   <!-- USE MODAL TO PREVIEW DRAFT BEFORE SUBMITTING!!! -->
-  <% if @post.draft1 != nil %>
+  <% if @post.submitted %>
     <%= f.label :draft2 %>
     <%= f.cktext_area :draft2 %><br>
   <% end %>
   
   <%= "Time Until Deadline: " + Time.diff(Time.now, @post.assignment.deadline)[:diff] + "\n" %>
-  
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Save Post'%>
   </div>
+  
+  <% if !@post.submitted %>
+    <div class="actions">
+      <%= f.submit 'Submit Post To Class'%>
+    </div>
+  <% end %>
+ 
 <% end %>

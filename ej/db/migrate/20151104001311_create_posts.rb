@@ -6,7 +6,8 @@ class CreatePosts < ActiveRecord::Migration
       t.text "draft2"
       t.integer "user_id"
       t.integer "assignment_id"
-      t.boolean "bookmarked", null: false
+      t.boolean "bookmarked", default: false
+      t.boolean "submitted", default: false
       t.timestamps null: false
     end
   end

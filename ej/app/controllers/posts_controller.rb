@@ -26,6 +26,7 @@ class PostsController < ApplicationController
   def new
     @assignment = Assignment.find(params[:assignment_id])
     @post = Post.new(assignment_id: @assignment.id)
+    @post.submitted = false
   end
 
   # GET /posts/1/edit
@@ -36,8 +37,14 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
+    
     @post = Post.new(post_params)
-
+    if params[:commit] == 'Submit Post To Class'
+      @post.submitted = true;
+    else 
+      @post.submitted = false;
+    end
+    
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
@@ -52,6 +59,11 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
+    
+    if params[:commit] == 'Submit Post To Class' 
+      @post.submitted= true;
+    end
+
     respond_to do |format|
       if @post.update(post_params)
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
@@ -89,6 +101,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-        params.require(:post).permit(:headline, :draft1, :draft2, :bookmarked, :user_id, :assignment_id)
+        params.require(:post).permit(:headline, :draft1, :draft2, :bookmarked, :submitted, :user_id, :assignment_id)
     end
 end

@@ -5,7 +5,8 @@
 <table class="table" align="center">
   <tbody>
     <% @posts.each do |post| %>
-      <% if current_user.admin %>
+      <% if post.submitted %>
+        <% if current_user.admin %>
           <tr>
             <td>
               <%= 'Headline:'%><%= post.headline %>
@@ -14,7 +15,7 @@
               <%= link_to 'Go to Post', post, class:'btn btn-default btn-xs' %>
             </td>
           </tr>
-      <% else %>
+        <% else %>
           <% if @position.first.title != post.positions.first.title %> 
             <tr>
               <td>
@@ -27,6 +28,7 @@
           <% else %>
             <!-- do nothing -->
           <% end %>
+        <% end %>
       <% end %>
     <% end %>
   </tbody>
