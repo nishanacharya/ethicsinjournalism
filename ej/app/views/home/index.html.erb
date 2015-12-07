@@ -6,6 +6,13 @@
 </style>
 <%if current_user.admin %>
 <div align = "center">
+
+
+</div>
+
+<div class="jumbotron">
+  <h1 align="center">Welcome, <%= current_user.name %>!</h1>
+  <p>
     <table align="center">
         <tr align="center">
         <td><%= link_to 'Create Assignment', new_assignment_path, class: 'btn btn-primary btn-lg' %></td> 
@@ -13,9 +20,10 @@
         </tr>
         <tr align="center">
         <td> <%= link_to 'Student Statistics', users_path, class: 'btn btn-primary btn-lg' %></td>
-        <td><%= link_to 'In Class View', assignments_path, class: 'btn btn-primary btn-lg' %><br></td>
+        <td><%= link_to 'In Class View', posts_inclass_path, class: 'btn btn-primary btn-lg' %><br></td>
         </tr>
     </table>
+  </p>
+</div>
 
-</div> 
 <% end %>

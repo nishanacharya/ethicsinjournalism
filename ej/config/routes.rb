@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
+  get 'posts/inclass' => 'posts#inclass'
   resources :likes
   resources :notes
   resources :posts
@@ -9,6 +10,7 @@ Rails.application.routes.draw do
   get 'home/index'
   get '/stats' => 'home#stats'
   get '/help' => 'home#help'
+  
 
   resources :posts do
     member do

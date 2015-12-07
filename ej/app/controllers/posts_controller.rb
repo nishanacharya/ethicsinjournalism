@@ -14,6 +14,10 @@ class PostsController < ApplicationController
       @position = Position.where(post_id: @currentPost)
     end
   end
+  
+  def inclass
+    @posts = Post.where(bookmarked: true)
+  end
 
   # GET /posts/1
   # GET /posts/1.json
