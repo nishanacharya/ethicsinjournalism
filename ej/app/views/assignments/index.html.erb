@@ -48,11 +48,15 @@
     <% end %>
   </tbody>
 </table>
+<div class="panel-footer">
+  
+  <p align="center">
+  <%= link_to 'New Assignment', new_assignment_path, class:'btn btn-primary btn-lg' if current_user.admin %>
+</p>
+</div>
 </div>
 
 <br>
 
-<p align="center">
-  <%= link_to 'New Assignment', new_assignment_path, class:'btn btn-primary btn-lg' if current_user.admin %>
-</p>
+
 </body>

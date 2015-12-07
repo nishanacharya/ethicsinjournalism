@@ -9,7 +9,7 @@
         <% if current_user.admin %>
           <tr>
             <td>
-              <h4><b><u><%= 'Headline:'%></u></b> <%= post.headline %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b><u><%= 'Author:'%></b></u> <%= post.user.name %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b><u><%= 'Position:'%></b></u> <%= post.positions.first.title %><div align="right"><%= link_to 'Go to Post', post, class:'btn btn-default btn-sm' %></div></h4>
+              <h4><b><u><%= 'Headline:'%></u></b> <%= post.headline %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b><u><%= 'Author:'%></b></u> <%= post.user.name %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b><u><%= 'Position:'%></b></u> <%= post.positions.first.title %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= link_to 'Go to Post', post, class:'btn btn-default btn-sm' %></h4>
             </td>
           </tr>
         <% else %>
@@ -28,6 +28,10 @@
     <% end %>
   </tbody>
 </table>
+
+<div class="panel-footer"></div>
+
+</div>
 
 <br>
 
