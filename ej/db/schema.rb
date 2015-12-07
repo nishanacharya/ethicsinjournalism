@@ -16,6 +16,10 @@ ActiveRecord::Schema.define(version: 20151104133021) do
   create_table "assignments", force: :cascade do |t|
     t.string   "title",       limit: 255
     t.text     "description", limit: 65535
+    t.text     "position1",   limit: 65535
+    t.text     "position2",   limit: 65535
+    t.text     "position3",   limit: 65535
+    t.text     "position4",   limit: 65535
     t.datetime "deadline"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false

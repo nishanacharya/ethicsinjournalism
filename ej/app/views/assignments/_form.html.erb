@@ -18,17 +18,14 @@
   <%= f.label :deadline%>
   <%= f.datetime_select :deadline%><br>
   
-  <%= f.label :positions %>
-
-  <ul>
-    <%= f.fields_for :positions do |positions_form| %>
-      <li>
-        <%= positions_form.label :title %>
-        <%= positions_form.text_field :title %>
-        Delete: <%= positions_form.check_box :_destroy%>
-      </li>
-    <% end %>
-  </ul>
+  <%= f.label :position1 %>
+  <%= f.text_field :position1 %>
+  <%= f.label :position2 %>
+  <%= f.text_field :position2 %>
+  <%= f.label :position3 %>
+  <%= f.text_field :position3 %>
+  <%= f.label :position4 %>
+  <%= f.text_field :position4 %>
   
   <div class="actions">
     <%= f.submit %>
