@@ -16,8 +16,7 @@
           <% if @position.first.title != post.positions.first.title %> 
             <tr>
               <td>
-                <h4><b><u><%= 'Headline:'%></b></u> <%= post.headline %>       <b><u><%= 'Author:'%></b></u> <%= post.user.name %>        <b><u><%= 'Position:'%></b></u> <%= post.positions.first.title %><div align="right"><%= link_to 'Go to Post', post, class:'btn btn-default btn-sm' %></div></h4>
-               
+                <h4><b><u><%= 'Headline:'%></b></u> <%= post.headline %>       <b><u><%= 'Author:'%></b></u> <%= post.user.name %>        <b><u><%= 'Position:'%></b></u> <%= post.positions.first.title %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= link_to 'Go to Post', post, class:'btn btn-default btn-sm' %></h4>
               </td>
             </tr>
           <% else %>
