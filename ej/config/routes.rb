@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   resources :positions
   resources :assignments
   get 'home/index'
-
+  get '/stats' => 'home#stats'
+  get '/help' => 'home#help'
 
   resources :posts do
     member do
