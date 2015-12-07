@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
+  get 'posts/inclass' => 'posts#inclass'
   resources :likes
   resources :notes
   resources :posts
@@ -7,7 +8,9 @@ Rails.application.routes.draw do
   resources :positions
   resources :assignments
   get 'home/index'
-
+  get '/stats' => 'home#stats'
+  get '/help' => 'home#help'
+  
 
   resources :posts do
     member do
@@ -20,6 +23,7 @@ Rails.application.routes.draw do
   root to:"home#index"
   
   devise_for :users
+  resources :users, only: [:index]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

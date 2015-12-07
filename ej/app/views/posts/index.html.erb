@@ -9,20 +9,14 @@
         <% if current_user.admin %>
           <tr>
             <td>
-              <%= 'Headline:'%><%= post.headline %>
-              <%= 'Author:'%><%= post.user.name %>
-              <%= 'Position:'%><%= post.positions.first.title %>
-              <%= link_to 'Go to Post', post, class:'btn btn-default btn-xs' %>
+              <h4><b><u><%= 'Headline:'%></u></b> <%= post.headline %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b><u><%= 'Author:'%></b></u> <%= post.user.name %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b><u><%= 'Position:'%></b></u> <%= post.positions.first.title %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= link_to 'Go to Post', post, class:'btn btn-default btn-sm' %></h4>
             </td>
           </tr>
         <% else %>
           <% if @position.first.title != post.positions.first.title %> 
             <tr>
               <td>
-                <%= 'Headline:'%><%= post.headline %>          
-                <%= 'Author:'%><%= post.user.name %>          
-                <%= 'Position:'%><%= post.positions.first.title %>           
-                <%= link_to 'Go to Post', post, class:'btn btn-defaul btn-xs' %>
+                <h4><b><u><%= 'Headline:'%></b></u> <%= post.headline %>       <b><u><%= 'Author:'%></b></u> <%= post.user.name %>        <b><u><%= 'Position:'%></b></u> <%= post.positions.first.title %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= link_to 'Go to Post', post, class:'btn btn-default btn-sm' %></h4>
               </td>
             </tr>
           <% else %>
@@ -33,6 +27,10 @@
     <% end %>
   </tbody>
 </table>
+
+<div class="panel-footer"></div>
+
+</div>
 
 <br>
 
