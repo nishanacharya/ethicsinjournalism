@@ -26,6 +26,9 @@
   <%end%>
   
   
+  <% if @post.likes.count != nil %>
+    <h4>Likes: <%= @post.likes.count %></h4>
+  <% end %>
   <% if Like.where(post_id: @post.id, user_id: current_user.id).exists? %>
     <% @like = Like.where(post_id: @post.id, user_id: current_user.id).first %>
     <%= button_to 'Unlike', @like, method: :delete%>
