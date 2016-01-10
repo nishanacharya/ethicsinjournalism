@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   get 'posts/inclass' => 'posts#inclass'
+  get 'posts/myposts' => 'posts#myposts'
   resources :likes
   resources :notes
   resources :posts

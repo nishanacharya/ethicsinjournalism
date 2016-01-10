@@ -18,7 +18,11 @@ class PostsController < ApplicationController
   def inclass
     @posts = Post.where(bookmarked: true)
   end
-
+  
+  def myposts
+    @posts = Post.where(user_id: current_user.id)
+  end
+  
   # GET /posts/1
   # GET /posts/1.json
   def show
