@@ -17,6 +17,15 @@
   <%= f.hidden_field :assignment_id, value: @assignment.id %>
   <%= f.label :headline %>
   <%= f.text_field :headline %><br>
+ 
+  
+    <% if @post.position.nil? %>
+    <h4>Choose a position</h4>
+    <%= f.select(:position_id, @assignment.positions.all.collect {|p| [p.title, p.id]})%>
+    <% else %>
+    <h4>Your position is: <%= @post.position.title%></h4>
+    <% end %>
+  
   
   <% if @post.submitted %>
     <div class="well well-lg">
@@ -32,13 +41,10 @@
     <%= f.label :draft2 %>
     <%= f.cktext_area :draft2 %><br>
   <% end %>
-  
-    <%= f.fields_for :positions do |positions_form| %>
-    <%= positions_form.select :title, options_for_select([[@post.assignment.position1, @post.assignment.position1], [@post.assignment.position2, @post.assignment.position2], [@post.assignment.position3, @post.assignment.position3], [@post.assignment.position4, @post.assignment.position4]]) %>
-    <%= positions_form.hidden_field :assignment_id, value: @post.assignment.id %>
-    <%= positions_form.hidden_field :post_id, value: @post.id %>
-    <% end %>
-  <%= "Time Until Deadline: " + Time.diff(Time.now, @post.assignment.deadline)[:diff] + "\n" %>
+   
+   
+  <%= "Time Until Deadline: " + Time.diff(Time.now, @post.assignment.draft_deadline)[:diff] + "\n" %>
+  <%= "Time Until Deadline: " + Time.diff(Time.now, @post.assignment.final_deadline)[:diff] + "\n" %>
 
   <div class="actions">
     <%= f.submit 'Save Post'%>

@@ -14,15 +14,12 @@
 ActiveRecord::Schema.define(version: 20151104133021) do
 
   create_table "assignments", force: :cascade do |t|
-    t.string   "title",       limit: 255
-    t.text     "description", limit: 65535
-    t.text     "position1",   limit: 65535
-    t.text     "position2",   limit: 65535
-    t.text     "position3",   limit: 65535
-    t.text     "position4",   limit: 65535
-    t.datetime "deadline"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "title",          limit: 255
+    t.text     "description",    limit: 65535
+    t.datetime "draft_deadline"
+    t.datetime "final_deadline"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   create_table "ckeditor_assets", force: :cascade do |t|
@@ -67,7 +64,6 @@ ActiveRecord::Schema.define(version: 20151104133021) do
 
   create_table "positions", force: :cascade do |t|
     t.string   "title",         limit: 255
-    t.integer  "post_id",       limit: 4
     t.integer  "assignment_id", limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
@@ -79,6 +75,7 @@ ActiveRecord::Schema.define(version: 20151104133021) do
     t.text     "draft2",        limit: 65535
     t.integer  "user_id",       limit: 4
     t.integer  "assignment_id", limit: 4
+    t.integer  "position_id",   limit: 4
     t.boolean  "bookmarked",                  default: false
     t.boolean  "submitted",                   default: false
     t.datetime "created_at",                                  null: false

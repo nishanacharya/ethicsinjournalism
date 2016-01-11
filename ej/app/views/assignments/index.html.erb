@@ -9,7 +9,8 @@
   <thead>
     <tr>
         <td><h3>Title</h3></td>
-        <td><h3>Deadline</h3></td>
+        <td><h3>Draft Deadline</h3></td>
+        <td><h3>Final Deadline</h3></td>
         <% if current_user.admin %>
           <td><h3>Link to Submissions</h3></td>
           <td><h3>Edit</h3></td>
@@ -27,7 +28,8 @@
       
       <tr>
         <td><%= assignment.title%></td>
-        <td><%= assignment.deadline%></td>
+        <td><%= assignment.draft_deadline%></td>
+        <td><%= assignment.final_deadline%></td>
         <% if current_user.admin %>
           <td><%= link_to 'Go to Posts', {:controller => 'posts', :action => 'index', :assignment_id => assignment.id}, class:'btn btn-default' %></td>
           <td><%= link_to 'Edit', edit_assignment_path(assignment), class:'btn btn-default' %></td>

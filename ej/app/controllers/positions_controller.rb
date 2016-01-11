@@ -69,6 +69,6 @@ class PositionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def position_params
-      params.require(:position).permit(:title, :post_id, :assignment_id)
+      params.require(:position).permit(:title, :assignment_id)
     end
 end

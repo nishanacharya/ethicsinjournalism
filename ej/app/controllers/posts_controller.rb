@@ -10,8 +10,8 @@ class PostsController < ApplicationController
     else 
       @assignment = Assignment.find(params[:assignment_id])
       @posts = Post.where(assignment_id: @assignment.id)
-      @currentPost = Post.where(user_id: @current_user.id, assignment_id: @assignment.id)
-      @position = Position.where(post_id: @currentPost)
+      @post =  Post.where(assignment_id: @assignment.id, user_id: current_user.id).first
+
     end
   end
   
@@ -34,7 +34,6 @@ class PostsController < ApplicationController
   def new
     @assignment = Assignment.find(params[:assignment_id])
     @post = Post.new(assignment_id: @assignment.id)
-     @post.positions.build 
   end
 
   # GET /posts/1/edit
@@ -110,6 +109,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-        params.require(:post).permit(:headline, :draft1, :draft2, :bookmarked, :user_id, :assignment_id, positions_attributes: [:id, :title, :user_id, :assignment_id, :destroy])
+        params.require(:post).permit(:headline, :draft1, :draft2, :bookmarked, :user_id, :assignment_id, :position_id)
     end
 end
