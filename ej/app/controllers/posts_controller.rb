@@ -13,7 +13,20 @@ class PostsController < ApplicationController
       @currentPost = Post.where(user_id: @current_user.id, assignment_id: @assignment.id)
       @position = Position.where(post_id: @currentPost)
     end
+    
+    @filterrific = initialize_filterrific(
+      Post,
+      params[:filterrific]
+    ) or return
+    @posts = @filterrific.find.page(params[:page])
+  
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
+  end
+  
   
   def inclass
     @posts = Post.where(bookmarked: true)

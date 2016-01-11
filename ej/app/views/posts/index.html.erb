@@ -2,32 +2,55 @@
 
 <div class="panel panel-default">
   <div class="panel-heading"><h1 align="center">Posts for <%=Assignment.where(:id => params[:assignment_id]).first.title%></h1></div>
-<table class="table" align="center">
-  <tbody>
-    <% @posts.each do |post| %>
-      <% if post.submitted %>
-        <% if current_user.admin %>
-          <tr>
-            <td>
-              <h4><b><u><%= 'Headline:'%></u></b> <%= post.headline %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b><u><%= 'Author:'%></b></u> <%= post.user.name %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b><u><%= 'Position:'%></b></u> <%= post.positions.first.title %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= link_to 'Go to Post', post, class:'btn btn-default btn-sm' %></h4>
-            </td>
-          </tr>
-        <% else %>
-          <% if @position.first.title != post.positions.first.title %> 
-            <tr>
-              <td>
-                <h4><b><u><%= 'Headline:'%></b></u> <%= post.headline %>       <b><u><%= 'Author:'%></b></u> <%= post.user.name %>        <b><u><%= 'Position:'%></b></u> <%= post.positions.first.title %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= link_to 'Go to Post', post, class:'btn btn-default btn-sm' %></h4>
-              </td>
-            </tr>
-          <% else %>
-            <!-- do nothing -->
-          <% end %>
-        <% end %>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
+<h1>Students</h1>
 
+<%#
+  Filterrific adds the `form_for_filterrific` view helper:
+  * adds dom id 'filterrific_filter'
+  * applies javascript behaviors:
+      * AJAX form submission on change
+      * AJAX spinner while AJAX request is being processed
+  * sets form_for options like :url, :method and input name prefix
+%>
+<%= form_for_filterrific @filterrific do |f| %>
+  <div>
+    Search
+    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+    <%= f.text_field(
+      :search_query,
+      class: 'filterrific-periodically-observed'
+    ) %>
+  </div>
+  <div>
+    Country
+    <%= f.select(
+      :with_country_id,
+      @filterrific.select_options[:with_country_id],
+      { include_blank: '- Any -' }
+    ) %>
+  </div>
+  <div>
+    Registered after
+    <%= f.text_field(:with_created_at_gte, class: 'js-datepicker') %>
+  </div>
+  <div>
+    Sorted by
+    <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by]) %>
+  </div>
+  <div>
+    <%= link_to(
+      'Reset filters',
+      reset_filterrific_url,
+    ) %>
+  </div>
+  <%# add an automated spinner to your form when the list is refreshed %>
+  <%= render_filterrific_spinner %>
+<% end %>
+
+<%= render(
+  partial: 'students/list',
+  locals: { students: @students }
+) %>
 <div class="panel-footer"></div>
 
 </div>
