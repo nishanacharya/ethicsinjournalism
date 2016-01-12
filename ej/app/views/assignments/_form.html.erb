@@ -21,11 +21,12 @@
   <%= f.datetime_select :final_deadline%><br>
   
   <%= f.fields_for :positions do |positions_form| %>
-
+  <h4>Position:</h4>
     <%= positions_form.label :title %>
     <%= positions_form.text_field :title %>
-
+  <br>
   <% end %>
+  <br>  
   
   <div class="actions">
     <%= f.submit %>

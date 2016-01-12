@@ -3,12 +3,12 @@
 <div class="page-header">
   <h1><%= @post.headline %><small>                  by: <%= @post.user.name %></small></h1>
 </div>
+<h4>Position: <%=@post.position.title%></h4>
+<br>
 <h4>First Draft</h4>
 <div class="well well-lg">
     <%= @post.draft1.html_safe %>
 </div>
-
-
 <% if @post.draft2 != nil && @post.draft2.length > 0 %>
     <h4>Final Draft</h4>
     <div class="well well-lg">
