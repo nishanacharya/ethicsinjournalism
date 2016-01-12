@@ -55,10 +55,20 @@
     <% else %>
     <h5>This post has been submitted to the class.</h5>
   <% end %>
+
  <br>
-  <%= "Time Until Draft Deadline: " + Time.diff(Time.now, @post.assignment.draft_deadline)[:diff] + "\n" %>
+
+ <% if Time.zone.now > @post.assignment.draft_deadline %>
+ <h5>Draft Deadline has passed</h5>
+ <% elsif !@post.submitted %>
+  <%= "Time Until Draft Deadline: " + Time.diff(Time.zone.now, @post.assignment.draft_deadline)[:diff] + "\n" %>
   <br>
-  <%= "Time Until Final Deadline: " + Time.diff(Time.now, @post.assignment.final_deadline)[:diff] + "\n" %>
+  <% end %>
+  <%if Time.now > @post.assignment.final_deadline %>
+    <h5>Final Deadline has passed</h5>
+    <% else %>
+      <%= "Time Until Final Deadline: " + Time.diff(Time.zone.now, @post.assignment.final_deadline)[:diff] + "\n" %>
+  <% end %>
 <% end %>
  </td>
  <td>
