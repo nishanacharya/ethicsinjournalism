@@ -98,6 +98,9 @@ class PostsController < ApplicationController
   
   def flop
     post = Post.find(params[:id])
+    if !post.bookmarked
+      UserMailer.notification_email(post.user).deliver_now
+    end
     post.bookmarked = !post.bookmarked # flop the status
     post.save
 
