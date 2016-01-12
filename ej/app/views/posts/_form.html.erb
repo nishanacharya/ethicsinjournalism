@@ -20,7 +20,7 @@
  
     <% if @assignment.positions.count == 1 %>
       <%=f.hidden_field :position_id, value: @assignment.positions.first %>
-      <% elsif @assignment.positions.nil? %>
+      <% elsif @assignment.positions.count == 0 %>
      <h5>No positions for this assignment</h5>
     <% else %>
       <% if !@post.submitted %>
