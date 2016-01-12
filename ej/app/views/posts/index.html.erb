@@ -20,7 +20,14 @@
             <td><%= link_to 'Go to Post', post, class:'btn btn-default btn-sm' %></td>
           </tr>
         <% else %>
-          <% if @post.position_id != post.position_id %> 
+          <% if @assignment.positions.count == 1 || @assignment.positions.nil? %>
+            <tr>
+            <td><%= post.headline %></td>
+            <td><%= post.user.name %></td>
+            <td><%= post.position.title %></td>
+            <td><%= link_to 'Go to Post', post, class:'btn btn-default btn-sm' %></td>
+          </tr>
+          <% elsif @post.position_id != post.position_id %> 
              <tr>
             <td><%= post.headline %></td>
             <td><%= post.user.name %></td>
