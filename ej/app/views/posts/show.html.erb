@@ -60,7 +60,7 @@
   		<!-- create new comment -->
 		<%=form_for(Comment.new) do |f|%>
 			<%=f.label :content, 'Add a Comment'%><br>
-			<%=f.text_area :content %><br>
+			<%=f.text_area :content, :cols => "90" %><br>
 			<%=f.hidden_field :user_id, value: current_user.id%>
 			<%=f.hidden_field :post_id, value: @post.id%>
 			<%=f.submit "Save Comment"%>
