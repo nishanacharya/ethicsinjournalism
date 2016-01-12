@@ -15,6 +15,7 @@
     <% if current_user %>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+        <li><%= link_to 'Photojournalism', photojour_path %></li>
         <% if !current_user.admin %>
           <li><%= link_to 'My Posts', posts_myposts_path %></li>
         <% end %>
