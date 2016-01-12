@@ -56,8 +56,8 @@ class NotesController < ApplicationController
   def destroy
     @note.destroy
     respond_to do |format|
-      format.html { redirect_to notes_url, notice: 'Note was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to Post.where(id: @note.post_id).first, notice: 'Note was successfully destroyed.' }
+      format.json { render :show, status: :ok, location: @note }
     end
   end
 
