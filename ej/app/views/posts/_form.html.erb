@@ -30,14 +30,23 @@
   
   <% if @post.submitted %>
     <div class="well well-lg">
-      <%= @post.draft1.html_safe %>
+      <%= @post.draft1 %>
     </div>
   <% else %>
-    <%= f.label :draft1 %>
-    <%= f.cktext_area :draft1 %><br>
+    <% if Time.zone.now < @assignment.draft_deadline %>
+      <%= f.label :draft1 %>
+      <%= f.cktext_area :draft1 %><br>
+    <% else %>
+      <% @post.submitted = true %>
+      <% if @post.draft2 == nil %>
+        <% @post.draft2 = @post.draft1 %>
+      <% end %>
+      <div class="well well-lg">
+        <%= @post.draft1 %>
+      </div>
+    <% end %>
   <% end %>
   
-  <!-- USE MODAL TO PREVIEW DRAFT BEFORE SUBMITTING!!! -->
   <% if @post.submitted %>
     <%= f.label :draft2 %>
     <%= f.cktext_area :draft2 %><br>

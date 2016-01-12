@@ -38,21 +38,24 @@
 
           <% if Post.where(:user_id => current_user.id, :assignment_id => assignment.id).exists?
                 @post = Post.where(:user_id => current_user.id, :assignment_id => assignment.id) %>
-                 <% if Time.zone.now < assignment.final_deadline %>
+                <% if Time.zone.now < assignment.final_deadline %>
                     <td><%= link_to 'Edit Post', edit_post_path(@post.first.id), class:'btn btn-default btn-sm'  %></td>
                     <% else %>
                     <td>Deadline has passed.</td>
                     <% end %>
           <% else %>
-            <td><%= link_to 'Start Post', {:controller => 'posts', :action => 'new', :assignment_id => assignment.id}, class:'btn btn-default btn-sm' %></td>
+            <% if Time.zone.now < assignment.final_deadline %>
+              <td><%= link_to 'Start Post', {:controller => 'posts', :action => 'new', :assignment_id => assignment.id}, class:'btn btn-default btn-sm' %></td>
+            <% else %>
+              <td>Deadline has passed.</td>
+            <% end %>          
           <% end %>
           <% if Post.where(:user_id => current_user.id, :assignment_id => assignment.id).exists? %>
             <td><%= link_to 'View My Post', post_path(@post.first.id), class:'btn btn-default btn-sm' %></td>
           <% end %>
           <% if Post.where(:user_id => current_user.id, :assignment_id => assignment.id, :submitted => true).exists? %>
             <td><%= link_to 'View Opposing Positions', {:controller => 'posts', :action => 'index', :assignment_id => assignment.id}, class:'btn btn-default btn-sm' %></td>
-            <% end %>
-          
+          <% end %>
         <% end %>
       </tr>
     <% end %>
