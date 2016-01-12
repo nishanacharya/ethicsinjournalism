@@ -18,13 +18,19 @@
   <%= f.label :headline %>
   <%= f.text_field :headline %><br>
  
-  
-    <% if !@post.submitted %>
-    <h4>Choose a position:</h4>
-    <%= f.select :position_id, @assignment.positions.all.collect {|p| [p.title, p.id]}%>
+    <% if @assignment.positions.count == 1 %>
+      <%=f.hidden_field :position_id, value: @assignment.positions.first %>
+      <% elsif @assignment.positions.count == 0 %>
+     <h5>No positions for this assignment</h5>
     <% else %>
-    <h4>Your position is: <%= @post.position.title%></h4>
+      <% if !@post.submitted %>
+        <h4>Choose a position:</h4>
+        <%= f.select :position_id, @assignment.positions.all.collect {|p| [p.title, p.id]}%>
+      <% else %>
+        <h4>Your position is: <%= @post.position.title%></h4>
+      <% end %>
     <% end %>
+    
   <br>
   <br>
   

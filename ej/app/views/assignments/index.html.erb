@@ -17,8 +17,8 @@
           <td><h3>Destroy</h3></td>
         <% else %>
           <td><h3>Start/Edit Post</h3></td>
-          <td><h3>View My Post</h3></td>
-          <td><h3>View Opposing Positions</h3></td>
+          <td><h3>My Post</h3></td>
+          <td><h3>Class Posts</h3></td>
         <% end %>
     </tr>
   </thead>
@@ -54,8 +54,10 @@
             <td><%= link_to 'View My Post', post_path(@post.first.id), class:'btn btn-default btn-sm' %></td>
           <% end %>
           <% if Post.where(:user_id => current_user.id, :assignment_id => assignment.id, :submitted => true).exists? %>
-            <td><%= link_to 'View Opposing Positions', {:controller => 'posts', :action => 'index', :assignment_id => assignment.id}, class:'btn btn-default btn-sm' %></td>
-          <% end %>
+
+            <td><%= link_to 'View Class Posts', {:controller => 'posts', :action => 'index', :assignment_id => assignment.id}, class:'btn btn-default btn-sm' %></td>
+            <% end %>
+          
         <% end %>
       </tr>
     <% end %>
