@@ -68,11 +68,12 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
-    
+
     if params[:commit] == 'Submit Post To Class' 
-      @post.submitted= true
+      @post.submitted = true
       @post.draft2 = @post.draft1
     end
+   
 
     respond_to do |format|
       if @post.update(post_params)
