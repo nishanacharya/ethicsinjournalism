@@ -17,3 +17,4 @@
 //= require bootstrap
 //= require_tree .
 //= require ckeditor/init
+//= require nested_form_fields
