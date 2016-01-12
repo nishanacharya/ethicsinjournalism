@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'home/index'
   get '/stats' => 'home#stats'
   get '/help' => 'home#help'
+  get '/photojour' => 'home#photojour'
   
 
   resources :posts do
