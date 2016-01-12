@@ -3,24 +3,30 @@
 <div class="panel panel-default">
   <div class="panel-heading"><h1 align="center">Posts for <%=Assignment.where(:id => params[:assignment_id]).first.title%></h1></div>
 <table class="table" align="center">
+  <thead>
+    <th><h3>Headline</h3></th>
+    <th><h4>Author</h4></th>
+    <th><h4>Position</h4></th>
+    <th><h4>Link</h4></th>
+  </thead>
   <tbody>
     <% @posts.each do |post| %>
       <% if post.submitted %>
         <% if current_user.admin %>
           <tr>
-            <td>
-              <h4><b><u><%= 'Headline:'%></u></b> <%= post.headline %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b><u><%= 'Author:'%></b></u> <%= post.user.name %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b><u><%= 'Position:'%></b></u> <%= post.position %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= link_to 'Go to Post', post, class:'btn btn-default btn-sm' %></h4>
-            </td>
+            <td><h4><%= post.headline %></h4></td>
+            <td><%= post.user.name %></td>
+            <td><%= post.position.title %></td>
+            <td><%= link_to 'Go to Post', post, class:'btn btn-default btn-sm' %></td>
           </tr>
         <% else %>
           <% if @post.position_id != post.position_id %> 
-            <tr>
-              <td>
-                <h4><b><u><%= 'Headline:'%></b></u> <%= post.headline %>       <b><u><%= 'Author:'%></b></u> <%= post.user.name %>        <b><u><%= 'Position:'%></b></u> <%= post.position.title %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= link_to 'Go to Post', post, class:'btn btn-default btn-sm' %></h4>
-              </td>
-            </tr>
-          <% else %>
-            <!-- do nothing -->
+             <tr>
+            <td><%= post.headline %></td>
+            <td><%= post.user.name %></td>
+            <td><%= post.position.title %></td>
+            <td><%= link_to 'Go to Post', post, class:'btn btn-default btn-sm' %></td>
+          </tr>
           <% end %>
         <% end %>
       <% end %>

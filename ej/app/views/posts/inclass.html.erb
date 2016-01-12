@@ -8,16 +8,16 @@
       <% if post.submitted %>
           <tr>
             <td>
-              <h4><b><u><%= 'Headline:'%></u></b> <%= post.headline %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b><u><%= 'Author:'%></b></u> <%= post.user.name %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b><u><%= 'Position:'%></b></u> <%= post.positions.first.title %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= link_to 'Go to Post', post, class:'btn btn-default btn-sm' %></h4>
+              <h4><b><u><%= 'Headline:'%></u></b> <%= post.headline %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b><u><%= 'Author:'%></b></u> <%= post.user.name %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b><u><%= 'Position:'%></b></u> <%= post.position.title %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= link_to 'Go to Post', post, class:'btn btn-default btn-sm' %></h4>
               <h4>First Draft</h4>
               <div class="well well-lg">
-                  <%= post.draft1 %>
+                  <%= post.draft1.html_safe %>
               </div>
 
               <% if post.draft2 != nil && post.draft2.length > 0 %>
                 <h4>Final Draft</h4>
                 <div class="well well-lg">
-                    <%= post.draft2 %>
+                    <%= post.draft2.html_safe %>
                 </div>
               <% end %>
             </td>

@@ -48,9 +48,10 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
    
     if params[:commit] == 'Submit Post To Class'
-      @post.submitted = true;
+      @post.submitted = true
+      @post.draft2 = @post.draft1
     else 
-      @post.submitted = false;
+      @post.submitted = false
     end
     
     respond_to do |format|
@@ -69,7 +70,7 @@ class PostsController < ApplicationController
   def update
     
     if params[:commit] == 'Submit Post To Class' 
-      @post.submitted= true;
+      @post.submitted= true
     end
 
     respond_to do |format|

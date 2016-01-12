@@ -20,16 +20,17 @@
  
   
     <% if @post.position.nil? %>
-    <h4>Choose a position</h4>
+    <h4>Choose a position:</h4>
     <%= f.select(:position_id, @assignment.positions.all.collect {|p| [p.title, p.id]})%>
     <% else %>
     <h4>Your position is: <%= @post.position.title%></h4>
     <% end %>
-  
+  <br>
+  <br>
   
   <% if @post.submitted %>
     <div class="well well-lg">
-      <%= @post.draft1 %>
+      <%= @post.draft1.html_safe %>
     </div>
   <% else %>
     <%= f.label :draft1 %>
@@ -41,21 +42,23 @@
     <%= f.label :draft2 %>
     <%= f.cktext_area :draft2 %><br>
   <% end %>
-   
-   
-  <%= "Time Until Deadline: " + Time.diff(Time.now, @post.assignment.draft_deadline)[:diff] + "\n" %>
-  <%= "Time Until Deadline: " + Time.diff(Time.now, @post.assignment.final_deadline)[:diff] + "\n" %>
+  <br>
 
   <div class="actions">
     <%= f.submit 'Save Post'%>
   </div>
-  
+  <br>
   <% if !@post.submitted %>
     <div class="actions">
       <%= f.submit 'Submit Post To Class'%>
     </div>
+    <% else %>
+    <h5>This post has been submitted to the class.</h5>
   <% end %>
- 
+ <br>
+  <%= "Time Until Draft Deadline: " + Time.diff(Time.now, @post.assignment.draft_deadline)[:diff] + "\n" %>
+  <br>
+  <%= "Time Until Final Deadline: " + Time.diff(Time.now, @post.assignment.final_deadline)[:diff] + "\n" %>
 <% end %>
  </td>
  <td>
