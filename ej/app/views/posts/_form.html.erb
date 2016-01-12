@@ -19,9 +19,9 @@
   <%= f.text_field :headline %><br>
  
   
-    <% if @post.position.nil? %>
+    <% if !@post.submitted %>
     <h4>Choose a position:</h4>
-    <%= f.select(:position_id, @assignment.positions.all.collect {|p| [p.title, p.id]})%>
+    <%= f.select :position_id, @assignment.positions.all.collect {|p| [p.title, p.id]}%>
     <% else %>
     <h4>Your position is: <%= @post.position.title%></h4>
     <% end %>
