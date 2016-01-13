@@ -28,7 +28,7 @@
         <td><%= ::Ahoy::Event.where(user_id: user.id, name: "Read Post").count - user.comments.count %></td>
         <td><%= user.comments.count %></td>
         <td><%= user.posts.count %></td>
-        <td><%= %></td>
+        <td><%= link_to "Posts", :controller => "posts", :action => "myposts", :user_id => user.id %></td>
       </tr>
       
     <% end %>

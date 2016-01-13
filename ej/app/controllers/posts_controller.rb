@@ -20,8 +20,13 @@ class PostsController < ApplicationController
   end
   
   def myposts
+    if current_user.admin
+      @user = User.find(params[:user_id])
+      @posts = Post.where(user_id: @user.id)
+    else
     @posts = Post.where(user_id: current_user.id)
     ahoy.track "Visited My Post Page"
+    end
   end
   
   # GET /posts/1

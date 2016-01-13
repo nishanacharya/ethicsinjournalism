@@ -1,7 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <div class="panel panel-default">
+  <% if current_user.admin %>
+  <div class="panel-heading"><h1 align="center"><%= @user.name %>'s Posts</h1></div>
+  <% else %>
   <div class="panel-heading"><h1 align="center">My Posts</h1></div>
+  <% end %>
 <table class="table" align="center">
   <tbody>
     <% if @posts != nil %>
