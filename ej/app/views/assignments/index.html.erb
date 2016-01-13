@@ -56,6 +56,8 @@
           <% if Post.where(:user_id => current_user.id, :assignment_id => assignment.id, :submitted => true).exists? %>
 
             <td><%= link_to 'View Class Posts', {:controller => 'posts', :action => 'index', :assignment_id => assignment.id}, class:'btn btn-default btn-sm' %></td>
+            <% else %>
+            <td><h5>You must submit your post to see class posts!</h5></td>
             <% end %>
           
         <% end %>

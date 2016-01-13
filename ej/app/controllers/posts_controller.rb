@@ -11,7 +11,7 @@ class PostsController < ApplicationController
       @assignment = Assignment.find(params[:assignment_id])
       @posts = Post.where(assignment_id: @assignment.id)
       @post =  Post.where(assignment_id: @assignment.id, user_id: current_user.id).first
-
+      ahoy.track "Visited Assignments Page"
     end
   end
   
@@ -21,13 +21,16 @@ class PostsController < ApplicationController
   
   def myposts
     @posts = Post.where(user_id: current_user.id)
+    ahoy.track "Visited My Post Page"
   end
   
   # GET /posts/1
   # GET /posts/1.json
   def show
-    
-
+    @post = Post.find(params[:id])
+    unless @post.user.id == current_user.id
+      ahoy.track "Read Post", post_id: @post.id
+    end
   end
 
   # GET /posts/new
@@ -38,7 +41,9 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    @post = Post.find(params[:id])
     @assignment = Assignment.find(@post.assignment_id)
+    ahoy.track "Edited Post", post_id: @post.id
   end
 
   # POST /posts
