@@ -1,0 +1,2 @@
+      invoke  active_record
+      create    db/migrate/20160114191722_add_optout_to_users.rb
