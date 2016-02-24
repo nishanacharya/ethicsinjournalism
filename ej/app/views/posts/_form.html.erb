@@ -55,7 +55,11 @@
         <% @post.draft2 = @post.draft1 %>
       <% end %>
       <div class="well well-lg">
+        <% if @post.draft1.nil? %>
+        <h3>No Draft Submitted</h3>
+        <% else %>
         <%= @post.draft1.html_safe %>
+        <% end %>
       </div>
     <% end %>
   <% end %>
